@@ -1,0 +1,41 @@
+<div style="background-color: lightcyan" class="container">
+  <p style="background-color: rgba(25, 192, 192, 0.797)">
+    <b>servers container</b>
+  </p>
+
+  <div class="container">
+    <label for="">Server name</label>
+    <!-- <input type="text" (input)="onUpdateServerName($event)" /> -->
+    <input type="text" [(ngModel)]="serverName" />
+  </div>
+  <div>
+    {{ serverName }}
+  </div>
+  <button
+    style="margin: 18px"
+    type="button"
+    class="btn btn-primary"
+    [disabled]="!allowNewServer"
+    (click)="onCreateServer('extra message')"
+  >
+    Add Server
+  </button>
+  <!-- <div>
+    <p>
+      {{ allowNewServer }}
+    </p>
+    <p [innerText]="allowNewServer"></p>
+  </div> -->
+  <!-- <p>{{ serverCreationStatus }}</p> -->
+  <!-- structural directives -->
+  <p *ngIf="this.serverCreated; else noServer">
+    Server was created, server name is {{ serverName }}
+  </p>
+  <!-- Local reference -->
+  <ng-template #noServer>
+    <p>No server was created</p>
+  </ng-template>
+  <!-- attribute directives -->
+  <app-server *ngFor="let server of servers; let i = index"></app-server>
+  <!-- <app-server></app-server> -->
+</div>

@@ -1,0 +1,16 @@
+<div style="background-color: lightcyan" class="container">
+  <p style="background-color: rgba(25, 192, 192, 0.797)">
+    <b>server container</b>
+  </p>
+  <!-- ngStyle = attribute directive -->
+  <!-- ngIf = structural directive -->
+  <!-- ngClass = if key is true then apply value -->
+  <p
+    [ngStyle]="{ backgroundColor: getColor() }"
+    [ngClass]="{ online: serverStatus === 'online' }"
+  >
+    {{ "Server" }} with ID {{ serverId }} is
+    {{ getServerStatus() }}
+  </p>
+  <hr />
+</div>
