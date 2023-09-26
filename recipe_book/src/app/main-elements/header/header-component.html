@@ -4,8 +4,10 @@
       <a class="navbar-brand" href="#">Recipe Book</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="#">Recipes</a></li>
-      <li><a href="#">Shopping List</a></li>
+      <li><a href="#" (click)="selectMenu('recipes')">Recipes</a></li>
+      <li>
+        <a href="#" (click)="selectMenu('shoppingList')">Shopping List</a>
+      </li>
     </ul>
     <ul class="nav navbar-right">
       <li class="dropdown">
