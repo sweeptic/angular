@@ -1,3 +1,55 @@
+<!-- [] -->
+<!--  -->
+<!--  -->
+<!-- The brackets, [], cause Angular to evaluate the right-hand side of the assignment as a dynamic expression. -->
+<!-- Without the brackets, Angular treats the right-hand side as a string literal and sets the property to that static value. -->
+
+<!-- ()  -- event binding -->
+
+<!-- BINDING -->
+<!--  -->
+<!--  -->
+
+<!-- html element property
+    <app-odd style="color: blue" ></app-odd> -->
+
+<!-- text interpolations
+        <h4>{{recommended}}</h4> -->
+
+<!-- property binding
+        <img alt="item" [src]="itemImageUrl"> -->
+
+<!-- attribute binding
+        <p [attr.attribute-you-are-targeting]="expression"></p> -->
+
+<!-- event binding 
+        <button (click)="onStartGame()"> -->
+
+<!-- two-way binding (Property binding + Event binding) -->
+<!-- ..... -->
+
+<!-- DIRECTIVES -->
+<!--  -->
+<!--  -->
+<!-- Components Directives 
+    @Component({
+        selector: 'app-component-overview',
+        template: '<h1>Hello World!</h1>',
+        styles: ['h1 { font-weight: normal; }']
+    })
+-->
+
+<!-- Build in Attribute Directives
+- NgClass    <p [ngClass]="{ online: serverStatus === 'online' }">
+- NgStyle    <p [ngStyle]="{ backgroundColor: getColor() }">
+- NgModel    <input type="text" [(ngModel)]="serverName" />
+ -->
+
+<!-- Build in Structural Directives
+- NgIf      <app-odd *ngIf="randomNum % 2 !== 0" ></app-odd>
+- NgFor
+- NgSwitch -->
+
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
