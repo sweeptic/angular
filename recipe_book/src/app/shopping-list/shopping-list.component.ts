@@ -14,4 +14,9 @@ export class ShoppingListComponent {
   constructor() {}
 
   ngOnInit() {}
+
+  onClickEmitHandler(payload: Ingredient) {
+    const newItem = new Ingredient(payload.name, payload.amount);
+    this.ingredients.push(newItem);
+  }
 }
