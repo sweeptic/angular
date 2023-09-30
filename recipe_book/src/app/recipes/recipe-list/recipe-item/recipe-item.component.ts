@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Recipe } from 'src/app/shared/recipe-model';
+import { RecipesService } from 'src/services/recipe.service';
 
 @Component({
   selector: 'app-recipe-item',
@@ -7,10 +8,11 @@ import { Recipe } from 'src/app/shared/recipe-model';
   styleUrls: ['./recipe-item.component.css'],
 })
 export class RecipeItemComponent {
-  @Input() recipeItem: Recipe;
-  @Output() recipeSelected = new EventEmitter<void>(); // NEM LEHET 'EVENT' VEGZODESU A NEVE
+  @Input() recipe: Recipe;
+
+  constructor(private recipesService: RecipesService) {}
 
   onSelected() {
-    this.recipeSelected.emit();
+    this.recipesService.recipeSelected.emit(this.recipe);
   }
 }
