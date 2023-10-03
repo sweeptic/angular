@@ -11,9 +11,29 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {}
 
-  onLoadServers() {
+  onLoadServers(id: number) {
     // complex calculation
     // console.log('router', this.router);
-    this.router.navigate(['/servers']);
+    this.router.navigate(['/servers', id, 'edit'], {
+      queryParams: { allowEdit: '1' },
+      fragment: 'loading',
+    });
   }
 }
+
+// http://localhost:4200/servers/5/edit?allowEdit=1#loading
+// http://localhost:4200/servers/1/edit?allowEdit=1#loading
+
+//  <a
+//         [routerLink]="['/servers', 5, 'edit']"
+//         [queryParams]="{ allowEdit: '1' }"
+//         fragment="loading"
+//         href="#"
+//         class="list-group-item"
+//         *ngFor="let server of servers"
+//       >
+
+// this.router.navigate(['/servers', id, 'edit'], {
+//   queryParams: { allowEdit: '1' },
+//   fragment: 'loading',
+// });
