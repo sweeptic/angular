@@ -8,6 +8,7 @@ import { Recipe } from 'src/app/shared/recipe-model';
 })
 export class RecipeItemComponent {
   @Input() recipe: Recipe;
+  @Input() index: number;
 
   constructor() {}
 }
