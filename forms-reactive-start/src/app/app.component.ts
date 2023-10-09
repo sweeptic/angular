@@ -22,12 +22,29 @@ export class AppComponent {
         email: new FormControl(
           '',
           [Validators.required, Validators.email],
-          [this.forbiddenEmails]
+          this.forbiddenEmails
         ),
       }),
       gender: new FormControl('male'),
       hobbies: new FormArray([]),
     });
+
+    this.signupForm.statusChanges.subscribe((status) =>
+      console.log('value', status)
+    );
+    this.signupForm.setValue({
+      userData: {
+        username: 'Max',
+        email: 'max@test.com',
+      },
+      gender: 'male',
+      hobbies: [],
+    });
+    // this.signupForm.patchValue({
+    //   userData: {
+    //     username: 'Anna',
+    //   },
+    // });
   }
 
   onSubmit() {
