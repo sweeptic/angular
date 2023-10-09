@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-root',
@@ -9,4 +9,16 @@ import { FormGroup } from '@angular/forms';
 export class AppComponent {
   genders = ['male', 'female'];
   signupForm: FormGroup;
+
+  ngOnInit() {
+    this.signupForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      gender: new FormControl('male'),
+    });
+  }
+
+  onSubmit() {
+    console.log('sig', this.signupForm);
+  }
 }
