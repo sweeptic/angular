@@ -6,13 +6,14 @@ import { Subject } from 'rxjs';
 
 @Injectable()
 export class RecipesService {
+  recipesChanged = new Subject<Recipe[]>();
   recipesList: Recipe[] = [
     new Recipe(
       'test recipe',
       'recipe desc',
       'https://plus.unsplash.com/premium_photo-1661587759162-d2dd4934ce33?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80',
       [
-        { name: 'breead', amount: 3 },
+        { name: 'bread', amount: 3 },
         { name: 'cheese', amount: 32 },
       ]
     ),
@@ -40,6 +41,21 @@ export class RecipesService {
   }
 
   setIngredients(ingredient: Ingredient[]) {
-    this.slService.addIngridients(ingredient);
+    this.slService.addIngredients(ingredient);
+  }
+
+  addRecipe(recipe: Recipe) {
+    this.recipesList.push(recipe);
+    this.recipesChanged.next(this.recipesList.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipesList[index] = newRecipe;
+    this.recipesChanged.next(this.recipesList.slice());
+  }
+
+  deleteRecipe(index: number) {
+    this.recipesList.splice(index, 1);
+    this.recipesChanged.next(this.recipesList.slice());
   }
 }
