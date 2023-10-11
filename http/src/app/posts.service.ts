@@ -66,6 +66,7 @@ export class PostsService {
         'https://ng-complete-guide-72f21-default-rtdb.europe-west1.firebasedatabase.app/posts.json',
         {
           observe: 'events',
+          responseType: 'json',
         }
       )
       .pipe(
