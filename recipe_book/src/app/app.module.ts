@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { RecipeBookComponent } from './recipes/recipe-book.component';
 
 import { HeaderComponent } from './main-elements/header/header-component';
+import { HttpClientModule } from '@angular/common/http';
 
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
 import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
@@ -34,7 +35,13 @@ import { RecipesService } from 'src/services/recipe.service';
     RecipeStartComponent,
     RecipeEditComponent,
   ],
-  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    AppRoutingModule,
+  ],
   providers: [ShoppingListService, RecipesService],
   bootstrap: [AppComponent],
 })
