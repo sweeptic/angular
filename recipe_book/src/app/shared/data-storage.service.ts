@@ -21,6 +21,17 @@ export class DataStorageService {
         console.log('response', response);
       });
   }
+
+  fetchRecipes() {
+    this.http
+      .get<Recipe[]>(
+        'https://ng-course-recipe-book-d5b48-default-rtdb.europe-west1.firebasedatabase.app/recipes.json'
+      )
+      .subscribe((data) => {
+        console.log('get', data);
+        this.recipeService.setRecipes(data);
+      });
+  }
 }
 
 // https://ng-course-recipe-book-d5b48-default-rtdb.europe-west1.firebasedatabase.app/
