@@ -1,7 +1,9 @@
 // https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[API_KEY]
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { KEY } from 'env';
+import { catchError, throwError } from 'rxjs';
 
 interface AuthResponseData {
   expires_in: string;
@@ -18,7 +20,7 @@ export class AuthService {
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponseData>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=',
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${KEY.apiKey}`,
       { email, password, returnSecureToken: true }
     );
   }
