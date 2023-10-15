@@ -25,29 +25,36 @@ export class AuthService {
         `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${KEY.apiKey}`,
         { email, password, returnSecureToken: true }
       )
-      .pipe(
-        catchError((errorRes) => {
-          let errorMessage = 'An unknown error occurred';
-          if (!errorRes.error || !errorRes.error.error) {
-            return throwError(errorMessage);
-          }
-          switch (errorRes.error.error.message) {
-            case 'EMAIL_EXISTS':
-              errorMessage = 'this email exists already';
-              break;
-
-            default:
-              break;
-          }
-          return throwError(errorMessage);
-        })
-      );
+      .pipe(catchError(this.handleError));
   }
 
   login(email: string, password: string) {
-    return this.http.post<authResponseData>(
-      `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${KEY.apiKey}`,
-      { email, password, returnSecureToken: true }
-    );
+    return this.http
+      .post<authResponseData>(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${KEY.apiKey}`,
+        { email, password, returnSecureToken: true }
+      )
+      .pipe(catchError(this.handleError));
+  }
+
+  private handleError(errorRes: HttpErrorResponse) {
+    console.log('errorRes', errorRes);
+
+    let errorMessage = 'An unknown error occurred';
+    if (!errorRes.error || !errorRes.error.error) {
+      return throwError(errorMessage);
+    }
+    switch (errorRes.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errorMessage = 'this email exists already';
+        break;
+      case 'INVALID_LOGIN_CREDENTIALS':
+        errorMessage = 'this email/password does not exists';
+        break;
+
+      default:
+        break;
+    }
+    return throwError(errorMessage);
   }
 }
