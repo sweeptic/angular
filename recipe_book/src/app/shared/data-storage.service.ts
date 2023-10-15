@@ -26,28 +26,21 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return this.authService.user.pipe(
-      take(1),
-      exhaustMap((user) => {
-        console.log('userFetch', user.token);
-
-        return this.http.get<Recipe[]>(
-          'https://ng-course-recipe-book-d5b48-default-rtdb.europe-west1.firebasedatabase.app/recipes.json',
-          {
-            params: new HttpParams().set('auth', user.token),
-          }
-        );
-      }),
-      map((recipes) => {
-        return recipes.map((item) => {
-          return {
-            ...item,
-            ingredients: item.ingredients ? item.ingredients : [],
-          };
-        });
-      }),
-      tap((recipes) => this.recipeService.setRecipes(recipes))
-    );
+    return this.http
+      .get<Recipe[]>(
+        'https://ng-course-recipe-book-d5b48-default-rtdb.europe-west1.firebasedatabase.app/recipes.json'
+      )
+      .pipe(
+        map((recipes) => {
+          return recipes.map((item) => {
+            return {
+              ...item,
+              ingredients: item.ingredients ? item.ingredients : [],
+            };
+          });
+        }),
+        tap((recipes) => this.recipeService.setRecipes(recipes))
+      );
   }
 }
 
