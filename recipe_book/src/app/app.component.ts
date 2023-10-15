@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,12 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  selectedPage = 'recipes';
-
-  onSelectedMenu(page: string) {
-    console.log('page', page);
-    this.selectedPage = page;
+  constructor(private authService: AuthService) {}
+  ngOnInit() {
+    this.authService.autoLogin();
   }
-
-  title = 'recipe_book';
 }
