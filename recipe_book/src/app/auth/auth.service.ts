@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 import { KEY } from 'env';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { User } from './user.module';
+import { Router } from '@angular/router';
 
 export interface authResponseData {
   idToken: string;
@@ -19,7 +20,7 @@ export interface authResponseData {
 export class AuthService {
   user = new BehaviorSubject<User>(null);
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {
     return this.http
@@ -89,5 +90,10 @@ export class AuthService {
         break;
     }
     return throwError(errorMessage);
+  }
+
+  logout() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
   }
 }
