@@ -4,16 +4,22 @@
       <a class="navbar-brand" href="#">Recipe Book</a>
     </div>
     <ul class="nav navbar-nav">
-      <li routerLinkActive="active">
+      <li routerLinkActive="active" *ngIf="!isAuthenticated">
         <a routerLink="/auth">Authenticate</a>
       </li>
-      <li routerLinkActive="active"><a routerLink="/recipes">Recipes</a></li>
+      <li routerLinkActive="active" *ngIf="isAuthenticated">
+        <a routerLink="/recipes">Recipes</a>
+      </li>
       <li routerLinkActive="active">
         <a routerLink="/shopping-list">Shopping List</a>
       </li>
     </ul>
     <ul class="nav navbar-right">
-      <li appDropdown class="dropdown">
+      <li *ngIf="isAuthenticated">
+        <a style="cursor: pointer">Logout</a>
+      </li>
+
+      <li appDropdown class="dropdown" *ngIf="isAuthenticated">
         <a style="cursor: pointer" class="dropdown-toggle" role="button"
           >Manage <span class="caret"></span>
         </a>
