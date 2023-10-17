@@ -1,4 +1,5 @@
 {
   "angular.enable-strict-mode-prompt": false,
-  "cSpell.words": ["rbga", "Wihuq"]
+  "cSpell.words": ["rbga", "Wihuq"],
+  "git.ignoreLimitWarning": true
 }
