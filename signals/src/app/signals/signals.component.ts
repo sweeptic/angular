@@ -13,7 +13,7 @@ export class SignalsComponent {
 
   increment() {
     // this.counter.update((oldCounter) => oldCounter + 1);
-    // this.counter.set(this.counter() + 1);
+    this.counter.set(this.counter() + 1);
 
     //   this.actions.push('INCREMENT');
     this.actions.mutate((oldActions) => {
@@ -23,7 +23,7 @@ export class SignalsComponent {
 
   decrement() {
     // this.counter.update((oldCounter) => oldCounter - 1);
-    // this.counter.set(this.counter() - 1);
+    this.counter.set(this.counter() - 1);
     // this.actions.push('DECREMENT');
     this.actions.mutate((oldActions) => {
       oldActions.push('DECREMENT');
