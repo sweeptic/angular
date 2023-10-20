@@ -4,6 +4,7 @@ import { ShoppingListService } from 'src/services/shopping-list.service';
 import { Observable, Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from './store/shopping-list.reducer';
+import { StartEdit } from './store/shopping-list.action';
 
 @Component({
   selector: 'app-shopping-list',
@@ -28,7 +29,8 @@ export class ShoppingListComponent {
   }
 
   onEditItem(index: number) {
-    this.slListService.startedEditing.next(index);
+    // this.slListService.startedEditing.next(index);
+    this.store.dispatch(new StartEdit(index));
   }
 
   ngOnDestroy() {
