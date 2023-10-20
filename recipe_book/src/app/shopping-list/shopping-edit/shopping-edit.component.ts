@@ -21,7 +21,6 @@ export class ShoppingEditComponent {
   @ViewChild('f', { static: false }) slForm: NgForm;
   subscription: Subscription;
   editMode = false;
-  editedItemIndex: number;
   editedItem: Ingredient;
 
   constructor(
@@ -51,12 +50,7 @@ export class ShoppingEditComponent {
     const newIngredient = new Ingredient(value.name, value.amount);
     if (this.editMode) {
       //   this.slService.updateIngredient(this.editedItemIndex, newIngredient);
-      this.store.dispatch(
-        new UpdateIngredient({
-          index: this.editedItemIndex,
-          ingredient: newIngredient,
-        })
-      );
+      this.store.dispatch(new UpdateIngredient(newIngredient));
     } else {
       //   this.slService.addIngredient(newIngredient);
       this.store.dispatch(new AddIngredient(newIngredient));
@@ -73,7 +67,7 @@ export class ShoppingEditComponent {
 
   onDelete() {
     // this.slService.deleteIngredient(this.editedItemIndex);
-    this.store.dispatch(new DeleteIngredient(this.editedItemIndex));
+    this.store.dispatch(new DeleteIngredient());
     this.onClear();
   }
 
