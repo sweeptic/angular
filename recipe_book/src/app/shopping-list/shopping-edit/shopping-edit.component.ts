@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/shared/ingredient-model';
-import { ShoppingListService } from 'src/services/shopping-list.service';
 import { AppState } from '../store/shopping-list.reducer';
 import {
   UpdateIngredient,
@@ -23,10 +22,7 @@ export class ShoppingEditComponent {
   editMode = false;
   editedItem: Ingredient;
 
-  constructor(
-    private slService: ShoppingListService,
-    private store: Store<AppState>
-  ) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
     this.subscription = this.store
