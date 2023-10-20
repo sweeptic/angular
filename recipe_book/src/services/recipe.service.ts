@@ -5,6 +5,7 @@ import { Ingredient } from 'src/app/shared/ingredient-model';
 import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AddIngredients } from 'src/app/shopping-list/store/shopping-list.action';
+import { AppState } from 'src/app/shopping-list/store/shopping-list.reducer';
 
 @Injectable()
 export class RecipesService {
@@ -36,7 +37,7 @@ export class RecipesService {
 
   constructor(
     private slService: ShoppingListService,
-    private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
+    private store: Store<AppState>
   ) {}
 
   setRecipes(recipes: Recipe[]) {
