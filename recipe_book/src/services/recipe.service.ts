@@ -4,7 +4,7 @@ import { Ingredient } from 'src/app/shared/ingredient-model';
 import { Subject } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AddIngredients } from 'src/app/shopping-list/store/shopping-list.action';
-import { AppState } from 'src/app/shopping-list/store/shopping-list.reducer';
+import { AppState } from 'src/app/store/app.reducer';
 
 @Injectable()
 export class RecipesService {
