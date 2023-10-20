@@ -17,16 +17,10 @@ export function shoppingListReducer(
     case ShoppingListActions.ADD_INGREDIENT:
       return {
         ...state,
-        ingredients: [
-          ...state.ingredients,
-          {
-            amount: action.payload.amount,
-            name: action.payload.name,
-          },
-        ],
+        ingredients: [...state.ingredients, action.payload],
       };
 
     default:
-      break;
+      return state;
   }
 }
