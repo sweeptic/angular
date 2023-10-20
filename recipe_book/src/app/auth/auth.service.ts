@@ -2,10 +2,11 @@
 
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { KEY } from 'env';
+
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 import { User } from './user.module';
 import { Router } from '@angular/router';
+import { KEY } from 'src/env';
 
 export interface authResponseData {
   idToken: string;
